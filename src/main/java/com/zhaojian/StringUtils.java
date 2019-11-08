@@ -16,7 +16,12 @@ import java.util.regex.Pattern;
  */
 public class StringUtils {
 	/**
-	 * 判断一个字符串是否为空
+	 * 
+	 * @Title: isBlank 
+	 * @Description: 判断一个字符串是否为空
+	 * @param str
+	 * @return
+	 * @return: boolean
 	 */
 	public static boolean isBlank(String str) {
 		
