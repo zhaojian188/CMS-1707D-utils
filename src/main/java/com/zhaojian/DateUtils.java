@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 
 /** 
@@ -75,7 +76,7 @@ public class DateUtils {
 		System.out.println(" bdYear: "+bdYear+ " bdMonth: "+bdMonth+
 				" bdDay: "+bdDay);
 		
-		//计算当前日期的年月日
+		//计算当前日期的年月 日
 		calendar.setTime(new Date());
 		//获取当前的年份
 		int currentYear = calendar.get(Calendar.YEAR);
@@ -215,6 +216,38 @@ public class DateUtils {
 				&& date.getTime() > firstDayOfWeek.getTime().getTime());
 
 	}
+	/**
+	 * 
+	 * @Title: randomDate 
+	 * @Description: 获取随机日期(1980-至今)
+	 * @return
+	 * @return: String
+	 */
+	public static String randomDate(){
+        Random rndYear=new Random();
+        int year=rndYear.nextInt(39)+1980;  //生成[1980,2019]的整数；年
+        Random rndMonth=new Random();
+        int month=rndMonth.nextInt(12)+1;   //生成[1,12]的整数；月
+        //生成[1,30)的整数；如果是2月只给他28天 
+        int day = 0;
+        if(month == 2){
+        	 Random rndDay=new Random(); 
+             day=rndDay.nextInt(28)+1; 
+        }else{
+        	 Random rndDay=new Random(); 
+             day=rndDay.nextInt(30)+1;
+        }
+        
+       /* Random rndHour=new Random();
+        int hour=rndHour.nextInt(23);       //生成[0,23)的整数；小时
+        Random rndMinute=new Random(); 
+        int minute=rndMinute.nextInt(60);   //生成分钟
+        Random rndSecond=new Random();
+        int second=rndSecond.nextInt(60);   //秒
+*/      return year+"-"+month+"-"+day/*"  "+hour+":"+minute+":"+second*/;
+
+	}
+	
 	
 	
 }

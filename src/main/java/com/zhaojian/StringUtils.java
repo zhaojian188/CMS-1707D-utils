@@ -35,6 +35,13 @@ public class StringUtils {
 		return true;*/
 		
 	}
+	public static boolean isNumber(String str) {
+		String regex = "^\\d$";
+		Pattern p = Pattern.compile(regex);
+		Matcher matcher = p.matcher(str);
+		return matcher.find();
+	}
+	
 	/**
 	 * 
 	 * @Title: isMobile 
@@ -103,6 +110,38 @@ public class StringUtils {
 		}
 		return sb.toString();
 	}
+	/**
+	 * 
+	 * @Title: getRandomNum 
+	 * @Description: 生成一个随机数
+	 * @return
+	 * @return: int
+	 */
+	public static int getRandomNum() {
+
+		int random=(int)(Math.random()*10+1);
+		return random;
+	}
+	
+	/**
+	 * 
+	 * @Title: getRandomNum 
+	 * @Description: 生成n位随机数字
+	 * @param n:代表生成数字的位数
+	 * @return
+	 * @return: String
+	 */
+	public static String getRandomNum(int n) {
+		
+		String str="";
+		//循环生成一个数字，再用字符串把他们拼接在一起
+		for (int i = 0; i < n; i++) {
+			int random=(int)(Math.random()*10);
+			str += random;
+		}
+		
+		return str;
+	}
 	
 	/**
 	 * 
@@ -150,6 +189,8 @@ public class StringUtils {
 		}
 		return sb.toString();
 	}
+	
+
 	
 	
 
