@@ -134,6 +134,19 @@ public class DateUtils {
 		return !(dateStr.equals(todayStr));
 	}
 	/**
+	 * 3.4.4判断是否为当月
+	 * @param date
+	 * @return
+	 */
+	public static boolean isCurrentMonth(Date date) {
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");
+		String dateStr = simpleDateFormat.format(date);
+		String todayStr = simpleDateFormat.format(new Date());
+		return dateStr.equals(todayStr);
+		
+	}
+	/**
 	 * 
 	 * @Title: getBOM 
 	 * @Description: 初始化到当前月份的1日0时0分0秒0毫秒
