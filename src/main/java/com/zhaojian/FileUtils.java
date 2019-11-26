@@ -16,10 +16,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.multipart.MultipartFile;
 
 /** 
  * @ClassName: FileUtils 
@@ -108,7 +112,7 @@ public class FileUtils {
 		return fileName.substring(dotIndex+1);
 	}
 	
-public static void delFilePath(String fileName) {
+	public static void delFilePath(String fileName) {
 		
 		File file = new File(fileName);
 		// 文件不存在  则直接返回
@@ -136,8 +140,44 @@ public static void delFilePath(String fileName) {
 			file.delete(); 
 		}
 		
-		
 	}
 	
-
+	/**
+	 * 
+	 * @Title: processFile 
+	 * @Description: 保存文件的相对路径
+	 * @param file
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 * @return: String
+	 */
+	public static String processFile(MultipartFile file,String uploadPath) throws IllegalStateException, IOException {
+		//获取图片的扩展名:  "xxx.jpg"(最后一个jpg)
+		String suffixName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		//获取图片文件名字
+		String prefixName = UUID.randomUUID().toString();
+		//获取新的文件的名称
+		String fileName = prefixName + suffixName;
+		
+		//创建日期格式
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		//获取当前的日期
+		Date date = new Date();
+		//生成以日期为格式的路径
+		String path = dateFormat.format(date);
+		File pathFile = new File(uploadPath + "/" +path);
+		//如果没有此文件夹，则创建一个文件夹
+		if(!pathFile.exists()) {
+			pathFile.mkdirs();
+		}
+		
+		//最终的新的文件名称
+		String newFileName = uploadPath+"/"+path+"/"+fileName;
+		//生成最终的文件
+		file.transferTo(new File(newFileName));
+		//返回上传图片的文件名
+		return path + "/" + fileName;
+	}
+	
 }
