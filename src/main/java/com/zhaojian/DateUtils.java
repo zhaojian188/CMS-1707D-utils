@@ -14,6 +14,7 @@ package com.zhaojian;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Random;
 
@@ -30,6 +31,41 @@ public class DateUtils {
 	 * 声明位常量: 一天有多少毫秒
 	 */
 	static final long millisecond = 1000 * 60 * 60 * 24;
+	
+	/**
+	 * 
+	 * @Title: getBirthday 
+	 * @Description: 随机生成生日
+	 * @return
+	 * @return: String
+	 */
+    public static String getBirthday(){
+        GregorianCalendar gc = new GregorianCalendar();
+
+        int year = randBetween(1949, 2001);
+
+        gc.set(gc.YEAR, year);
+
+        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
+
+        gc.set(gc.DAY_OF_YEAR, dayOfYear);
+
+        return gc.get(gc.YEAR) + "-" + (gc.get(gc.MONTH) + 1) + "-" + gc.get(gc.DAY_OF_MONTH);
+    }
+    /**
+     * 
+     * @Title: randBetween 
+     * @Description: 生成在start ~ end之间的随机数
+     * @param start
+     * @param end
+     * @return
+     * @return: int
+     */
+    public static int randBetween(int start, int end) {
+        return start + (int)Math.round(Math.random() * (end - start));
+    }
+	
+	
 	
 	/**
 	 * 

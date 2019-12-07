@@ -18,6 +18,40 @@ public class StringUtils {
 	
 	/**
 	 * 
+	 * @Title: getSex 
+	 * @Description: 随机生成性别"男"或"女"
+	 * @return
+	 * @return: String
+	 */
+	public static String getSex(){
+        Random r = new Random();
+        int i = r.nextInt(2);
+        if(i==0){
+            return "男";
+        }else{
+            return "女";
+        }
+
+    }
+	/**
+	 * 
+	 * @Title: getName 
+	 * @Description: 随机生成一个名字（3个字的名字）
+	 * @return
+	 * @return: String
+	 */
+	 public static String getName(){
+	        String name = "";
+//	        System.out.println(c);
+	        for (int i = 0; i <3 ; i++) {
+	            char c = (char) (0x4e00 + (int) (Math.random() * (0x9fa5 - 0x4e00 + 1)));
+	            name+=c;
+	        }
+	        return name;
+	    }
+	
+	/**
+	 * 
 	 * @Title: isHttpUrl 
 	 * @Description:  验证是否为正确的URL
 	 * @param str
