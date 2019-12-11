@@ -22,6 +22,19 @@ import java.util.Random;
 public class RandomUtils {
 	/**
 	 * 
+	 * @Title: getRandomNum 
+	 * @Description: 生成一个0~9之间的随机数 [1,9)
+	 * @param num
+	 * @return
+	 * @return: int
+	 */
+	public static int getRandomNum(int num) {
+		Random random = new Random();
+		int result = random.nextInt(num);
+		return result+1;
+	}
+	/**
+	 * 
 	 * @Title: getRandomInt 
 	 * @Description: 取0~n位随机数值
 	 * @param min 最小值 1
@@ -34,6 +47,7 @@ public class RandomUtils {
 		
 		return min + random.nextInt(max-min+1);
 	}
+	
 	/**
 	 * 
 	 * @Title: getRandomLong 
