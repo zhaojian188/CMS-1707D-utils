@@ -28,6 +28,7 @@ import java.util.UUID;
 import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
+
 /** 
  * @ClassName: FileUtils 
  * @Description: TODO
@@ -104,22 +105,24 @@ public class FileUtils {
 	 * @throws IOException
 	 * @return: String
 	 */
-	public static String readFile(File file, String charset) throws Exception {
+	public static List<String> readFile(String fileName, String charset) throws Exception {
+		//创建一个集合存入解析的字符串
+		List<String> list = new ArrayList<String>();
+		//创建文件
+		File file = new File(fileName);
 		// 创建输出流对象
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
-		// 定义缓冲对象
-		StringBuffer sb = new StringBuffer();
 		// 定义读取每行的结果
 		String content = null;
 		// 循环读取
 		while ((content = br.readLine()) != null) {
-			// 加入缓冲对象
-			sb.append(content);
+			// 把读取的字符串加入到list集合
+			list.add(content);
 		}
 		// 关闭流
 		br.close();
-		// 返回结果
-		return sb.toString();
+		// 返回结果为list集合
+		return list;
 
 	}
 	
@@ -133,19 +136,19 @@ public class FileUtils {
 	 * @throws IOException
 	 * @return: List<String>
 	 */
-	public static List<String> readFileString(String fileName) throws IOException {
-		//创建一个集合存入解析的字符串
-		List<String> lines = new ArrayList<String>();
-		//创建文件
-		File file = new File(fileName);
+	public static String readFileString(File file, String charset) throws IOException {
+		
 		//读取字符串为UTF-8
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
-		
+		// 定义缓冲对象
+		StringBuffer sb = new StringBuffer();
+		// 定义读取每行的结果
 		String str = null;
 		while((str = reader.readLine()) != null) {
-			lines.add(str);
+			// 加入缓冲对象
+			sb.append(str);
 		}
-		return lines;
+		return sb.toString();
 	}
 	/**
 	 * 
