@@ -16,6 +16,50 @@ import java.util.regex.Pattern;
  */
 public class StringUtils {
 	
+	/** 
+	 * 截取字符串 （支持正向、反向选择）<br/> 
+	 * 
+	 * @param str 待截取的字符串 
+	 * @param start 起始索引 ，>=0时，从start开始截取；<0时，从length-|start|开始截取 
+	 * @param end 结束索引 ，>=0时，从end结束截取；<0时，从length-|end|结束截取 
+	 * @return 返回截取的字符串 
+	 * @throws RuntimeException 
+	 */
+	public static String subStr(String str, int start, int end) throws RuntimeException{ 
+	  if(str==null){ 
+	    throw new NullPointerException(""); 
+	  } 
+	  int len = str.length(); 
+	  int s = 0;//记录起始索引 
+	  int e = 0;//记录结尾索引 
+	  if(len<Math.abs(start)){ 
+	    throw new StringIndexOutOfBoundsException("最大长度为"+len+"，索引超出范围为:"+(len-Math.abs(start))); 
+	  }else if(start<0){ 
+	    s = len - Math.abs(start); 
+	  }else if(start<0){ 
+	    s=0; 
+	  }else{//>=0 
+	    s = start; 
+	  } 
+	  if(len<Math.abs(end)){ 
+	    throw new StringIndexOutOfBoundsException("最大长度为"+len+"，索引超出范围为:"+(len-Math.abs(end))); 
+	  }else if (end <0){ 
+	    e = len - Math.abs(end); 
+	  }else if (end==0){ 
+	    e = len; 
+	  }else{//>=0 
+	    e = end; 
+	  } 
+	  if(e<s){ 
+	    throw new StringIndexOutOfBoundsException("截至索引小于起始索引:"+(e-s)); 
+	  } 
+	  
+	  return str.substring(s, e); 
+	} 
+	
+	
+	
+	
 	/**
 	 * 
 	 * @Title: getSex 

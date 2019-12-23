@@ -22,6 +22,79 @@ import java.util.Random;
 public class RandomUtils {
 	/**
 	 * 
+	 * @Title: getRandomForCMS
+	 * @Description: 获取频道id和分类id，二级联动的工具类
+	 * @param end
+	 * @return
+	 * @return: int[]
+	 */
+	public static int[] getRandomToCMS(int end) {
+		Random random = new Random();
+		int nextInt = random.nextInt(end);
+		int nextInt2 = 1;
+		while (nextInt == 0) {
+			nextInt = random.nextInt(end);
+		}
+		switch (nextInt) {
+		case 1:
+			nextInt2 = random.nextInt(4);
+			while (nextInt2 == 0) {
+				nextInt2 = random.nextInt(4);
+			}
+			break;
+		case 2:
+			nextInt2 = random.nextInt(9);
+			while (nextInt2 < 4) {
+				nextInt2 = random.nextInt(9);
+			}
+			break;
+		case 3:
+			nextInt2 = random.nextInt(13);
+			while (nextInt2 < 9) {
+				nextInt2 = random.nextInt(13);
+			}
+			break;
+		case 4:
+			nextInt2 = random.nextInt(17);
+			while (nextInt2 < 13) {
+				nextInt2 = random.nextInt(17);
+			}
+			break;
+		case 5:
+			nextInt2 = random.nextInt(21);
+			while (nextInt2 < 17) {
+				nextInt2 = random.nextInt(21);
+			}
+			break;
+		case 6:
+			nextInt2 = random.nextInt(25);
+			while (nextInt2 < 21) {
+				nextInt2 = random.nextInt(25);
+			}
+			break;
+		case 7:
+			nextInt2 = random.nextInt(29);
+			while (nextInt2 < 25) {
+				nextInt2 = random.nextInt(29);
+			}
+			break;
+		case 8:
+			nextInt2 = random.nextInt(33);
+			while (nextInt2 < 29) {
+				nextInt2 = random.nextInt(33);
+			}
+			break;
+
+		default:
+			break;
+		}
+		int[] arr = new int[] { nextInt, nextInt2 };
+		return arr;
+	}
+	
+	
+	/**
+	 * 
 	 * @Title: getRandomNum 
 	 * @Description: 生成一个0~9之间的随机数 [1,9)
 	 * @param num
