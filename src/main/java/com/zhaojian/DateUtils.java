@@ -26,6 +26,24 @@ import java.util.Random;
  * @时间: 2019年11月7日 
  */
 public class DateUtils {
+	/**
+	 * 
+	 * @Title: random 
+	 * @Description: 生成指定的随机日期 例2019-1-1 ~ 至今
+	 * @param begin
+	 * @param end
+	 * @return
+	 * @return: long
+	 */
+	public  static long randomDays(long begin, long end) {
+        long rtn = begin + (long) (Math.random() * (end - begin));
+        // 如果返回的是开始时间和结束时间，则递归调用本函数查找随机值
+        if (rtn == begin || rtn == end) {
+            return randomDays(begin, end);
+        }
+        return rtn;
+    }
+	
 	
 	/**
 	 * 声明位常量: 一天有多少毫秒
@@ -289,13 +307,13 @@ public class DateUtils {
              day=rndDay.nextInt(30)+1;
         }
         
-       /* Random rndHour=new Random();
+        Random rndHour=new Random();
         int hour=rndHour.nextInt(23);       //生成[0,23)的整数；小时
         Random rndMinute=new Random(); 
         int minute=rndMinute.nextInt(60);   //生成分钟
         Random rndSecond=new Random();
         int second=rndSecond.nextInt(60);   //秒
-*/      return year+"-"+month+"-"+day/*"  "+hour+":"+minute+":"+second*/;
+        return year+"-"+month+"-"+day+"  "+hour+":"+minute+":"+second;
 
 	}
 	
